@@ -54,22 +54,12 @@
     text-align: center;
     position: relative;
   }
-  .masthead-double-rule {
-    width: clamp(195px, 41vw, 465px);
-    margin: 25px auto 0;
-    padding-top: 8px; /* 4px thick line height + 3px gap */
-    border-bottom: 1.5px solid var(--black);
-    position: relative;
-    overflow: visible;
-  }
-  .masthead-double-rule::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0px;
-    right: 0px;
-    height: 4px;
-    background: var(--black);
+  .masthead-diamonds {
+    text-align: center;
+    margin: 18px auto 0;
+    font-size: 16px;
+    letter-spacing: 0.5em;
+    color: var(--black);
   }
   .masthead::before {
     content: '';
@@ -672,7 +662,7 @@
     <div class="masthead-tagline">A documentary newsletter & podcast about upstate New York</div>
     <div class="masthead-date"><a href="https://www.thejiffy.xyz" target="_blank" rel="noopener" class="masthead-date-link">thejiffy.xyz</a></div>
   </div>
-  <div class="masthead-double-rule"></div>
+  <div class="masthead-diamonds">♦ ♦ ♦</div>
 </header>
 <!-- ── WELCOME BANNER ────────────────────── -->
 <section class="welcome-banner page-wrapper">
