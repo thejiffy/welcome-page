@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to The Jiffy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #fdfcf8;
+    --black: #0a0a0a;
+    --blue: #0000ff;
+    --yellow: #ffcf00;
+    --magenta: #ff10f0;
+    --cyan: #00e0ff;
+    --red: #ff0000;
+    --green: #56e403;
+    --rule: 3px solid var(--black);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background-color: var(--cream);
+    color: var(--black);
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* ── TOP NAV ─────────────────────────────────────── */
+  .top-nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 10px 20px;
+  }
+  .top-nav a {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--black);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 1px;
+  }
+  .top-nav a:hover { border-color: var(--blue); color: var(--blue); }
+  /* ── MASTHEAD ─────────────────────────────────────── */
+  .masthead {
+    padding: 0;
+    text-align: center;
+    position: relative;
+  }
+  .masthead-double-rule {
+    width: clamp(195px, 41vw, 465px);
+    margin: 25px auto 0;
+    padding-top: 8px; /* 4px thick line height + 3px gap */
+    border-bottom: 1.5px solid var(--black);
+    position: relative;
+    overflow: visible;
+  }
+  .masthead-double-rule::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0px;
+    right: 0px;
+    height: 4px;
+    background: var(--black);
+  }
+  .masthead::before {
+    content: '';
+    display: block;
+    height: 18px;
+    margin: 0 0 14px;
+    background: linear-gradient(to bottom, #cccccc, #fdfcf8);
+  }
+  .masthead-logo {
+    display: block;
+    margin: 28px auto 22px;
+    width: clamp(195px, 41vw, 465px);
+    height: auto;
+  }
+  .masthead-logo svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    fill: var(--black);
+  }
+  .masthead-tagline {
+    font-family: 'Libre Baskerville', serif;
+    font-style: italic;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    color: #444;
+    margin-top: 6px;
+  }
+  .masthead-date-link {
+    color: inherit;
+    text-decoration: none;
+  }
+  .masthead-date-link:hover {
+    color: #ff10f0;
+  }
+  .masthead-date {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #666;
+    margin-top: 4px;
+  }
+  /* ── LAYOUT ─────────────────────────────────────── */
+  .page-wrapper {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  /* ── WELCOME BANNER ─────────────────────────────── */
+  .welcome-banner {
+    padding-top: 36px;
+    text-align: center;
+  }
+  .wave-divider {
+    display: block;
+    width: 100%;
+    margin-top: 32px;
+    overflow: hidden;
+    line-height: 0;
+  }
+  .wave-divider svg {
+    display: block;
+    width: 100%;
+    height: 18px;
+  }
+  .welcome-kicker {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    background: var(--yellow);
+    display: inline-block;
+    padding: 4px 10px;
+    margin-bottom: 16px;
+  }
+  .welcome-headline {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(28px, 5vw, 44px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    max-width: 680px;
+    margin: 0 auto 18px;
+  }
+  .welcome-body {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 17px;
+    line-height: 1.7;
+    max-width: 560px;
+    margin: 0 auto;
+    color: #222;
+  }
+  /* ── SECTION HEADERS ─────────────────────────────── */
+  .section-header {
+    padding: 10px 0;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-top: 0;
+  }
+  .section-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .section-rule {
+    flex: 1;
+    height: 1px;
+    background: #ccc;
+  }
+  /* ── START HERE ──────────────────────────────────── */
+  .start-here {
+    padding-top: 32px;
+    padding-bottom: 32px;
+    border-bottom: var(--rule);
+  }
+  .story-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .story-item {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 0 18px;
+    align-items: start;
+    padding: 18px 0;
+    border-bottom: 1px solid #ddd;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s;
+  }
+  .story-item:last-child { border-bottom: none; }
+  .story-item:hover { background: #f5f4ef; margin: 0 -12px; padding: 18px 12px; }
+  .story-number {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 1;
+    color: #bbb;
+    text-align: right;
+    padding-top: 3px;
+  }
+  .story-kicker {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 4px;
+    display: block;
+  }
+  .story-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .story-dek {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #444;
+    font-style: italic;
+  }
+  /* ── PAID UPSELL ─────────────────────────────────── */
+  .upsell-section {
+    padding-top: 36px;
+    padding-bottom: 36px;
+  }
+  .upsell-inner {
+    background: var(--black);
+    color: var(--cream);
+    padding: 36px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .upsell-inner::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 8px;
+    height: 100%;
+    background: repeating-linear-gradient(
+      180deg,
+      var(--yellow) 0px, var(--yellow) 20px,
+      var(--magenta) 20px, var(--magenta) 40px,
+      var(--cyan) 40px, var(--cyan) 60px,
+      var(--green) 60px, var(--green) 80px
+    );
+  }
+  .upsell-kicker {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 10px;
+    display: block;
+  }
+  .upsell-headline {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(24px, 4vw, 36px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    max-width: 520px;
+  }
+  .upsell-body {
+    font-size: 15px;
+    line-height: 1.65;
+    color: #ccc;
+    max-width: 480px;
+    margin-bottom: 28px;
+  }
+  .tiers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  @media (max-width: 580px) {
+    .tiers { grid-template-columns: 1fr; }
+    .upsell-inner { padding: 28px 24px; }
+  }
+  .tier-card {
+    border: 1px solid #444;
+    padding: 18px 16px;
+    position: relative;
+  }
+  .tier-card.featured {
+    border-color: var(--yellow);
+    border-width: 2px;
+  }
+  .tier-badge {
+    font-family: 'Oswald', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: var(--yellow);
+    color: var(--black);
+    padding: 2px 7px;
+    position: absolute;
+    top: -9px;
+    left: 12px;
+  }
+  .tier-name {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+  .tier-price {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--yellow);
+    margin-bottom: 2px;
+  }
+  .tier-price-note {
+    font-size: 11px;
+    color: #888;
+    margin-bottom: 10px;
+  }
+  .tier-perks {
+    font-size: 12px;
+    line-height: 1.55;
+    color: #aaa;
+    list-style: none;
+  }
+  .tier-perks li::before {
+    content: "— ";
+    color: #666;
+  }
+  .upsell-cta {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--black);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    text-decoration: none;
+    transition: background 0.15s, transform 0.1s;
+    margin-right: 14px;
+  }
+  .upsell-cta:hover {
+    background: var(--cream);
+    transform: translateY(-1px);
+  }
+  .upsell-skip {
+    font-size: 13px;
+    color: #666;
+    font-style: italic;
+  }
+  /* ── SPONSOR BANNER ──────────────────────────────── */
+  .sponsor-banner {
+    border-bottom: var(--rule);
+    padding-bottom: 28px;
+  }
+  .sponsor-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 28px;
+  }
+  .sponsor-header::before {
+    content: '';
+    flex: 1;
+    border-top: var(--rule);
+    margin-left: -20px;
+  }
+  .sponsor-header::after {
+    content: '';
+    flex: 1;
+    border-top: var(--rule);
+    margin-right: -20px;
+  }
+  .sponsor-header-text {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 7px 18px;
+    border: 1.5px solid var(--black);
+    background: var(--cream);
+  }
+  .sponsor-banner-inner {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  @media (max-width: 580px) {
+    .sponsor-banner-inner { flex-direction: column; align-items: flex-start; gap: 14px; }
+  }
+  .sponsor-label-col {
+    flex-shrink: 0;
+  }
+  .sponsor-thumb {
+    position: relative;
+    width: 260px;
+    height: 130px;
+  }
+  .sponsor-thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  .sponsor-thumb-placeholder {
+    position: absolute;
+    inset: 0;
+    border: 1.5px dashed #bbb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #bbb;
+    line-height: 1.5;
+    pointer-events: none;
+  }
+  .sponsor-name {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+  .sponsor-name a {
+    color: var(--black);
+    text-decoration: none;
+    border-bottom: 2px solid var(--blue);
+  }
+  .sponsor-name a:hover { color: var(--blue); }
+  .sponsor-divider {
+    width: 1px;
+    align-self: stretch;
+    background: #ccc;
+    flex-shrink: 0;
+  }
+  @media (max-width: 580px) {
+    .sponsor-divider { display: none; }
+  }
+  .sponsor-copy-col {
+    flex: 1;
+  }
+  .sponsor-copy {
+    font-size: 14px;
+    line-height: 1.65;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  .sponsor-cta-link {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue);
+    text-decoration: none;
+    border-bottom: 1px solid var(--blue);
+    padding-bottom: 1px;
+  }
+  .sponsor-cta-link:hover { color: var(--black); border-color: var(--black); }
+  /* ── SURVEY SECTION ──────────────────────────────── */
+  .survey-section {
+    padding-top: 36px;
+    padding-bottom: 36px;
+    border-bottom: var(--rule);
+  }
+  .survey-inner {
+    border: 2px solid var(--black);
+    padding: 32px 36px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: center;
+  }
+  @media (max-width: 580px) {
+    .survey-inner {
+      grid-template-columns: 1fr;
+      padding: 24px 20px;
+    }
+  }
+  .survey-headline {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .survey-body {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #444;
+    max-width: 440px;
+  }
+  .survey-btn {
+    display: block;
+    background: var(--black);
+    color: var(--cream);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 14px 22px;
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+  .survey-btn:hover { background: var(--blue); }
+  /* ── FOOTER ──────────────────────────────────────── */
+  .site-footer {
+    padding-top: 28px;
+    padding-bottom: 40px;
+    text-align: center;
+  }
+  .footer-logo {
+    margin-bottom: 14px;
+  }
+  .footer-logo svg {
+    width: auto;
+    height: 22px;
+    display: block;
+    margin: 0 auto;
+    fill: var(--black);
+  }
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .footer-links a {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--black);
+    text-decoration: none;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 1px;
+  }
+  .footer-links a:hover { border-color: var(--blue); color: var(--blue); }
+  .footer-fine {
+    font-size: 12px;
+    color: #888;
+    line-height: 1.55;
+  }
+  /* ── UTILITY ─────────────────────────────────────── */
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+  /* ── MOBILE ──────────────────────────────────── */
+  @media (max-width: 580px) {
+    /* More side breathing room */
+    .page-wrapper { padding-left: 28px; padding-right: 28px; }
+
+    /* Welcome */
+    .welcome-banner { padding-top: 24px; }
+    .welcome-body { font-size: 15px; }
+
+    /* Start Here */
+    .start-here { padding-top: 24px; padding-bottom: 24px; }
+    .section-header { flex-wrap: wrap; }
+    .section-header .section-title:last-child { color: #999; font-weight: 400; }
+
+    /* Story items — disable negative-margin hover on touch */
+    .story-item:hover { margin: 0; padding-top: 18px; padding-bottom: 18px; background: none; }
+
+    /* Upsell */
+    .upsell-section { padding-top: 24px; padding-bottom: 24px; }
+    .upsell-cta {
+      display: block;
+      text-align: center;
+      margin-right: 0;
+      margin-bottom: 12px;
+      width: 100%;
+    }
+
+    /* Sponsor thumb — fluid on mobile */
+    .sponsor-label-col { width: 100%; }
+    .sponsor-thumb {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 2 / 1;
+    }
+    .sponsor-banner { padding-bottom: 20px; }
+    .sponsor-header::before { margin-left: -28px; }
+    .sponsor-header::after  { margin-right: -28px; }
+
+    /* Survey */
+    .survey-section { padding-top: 24px; padding-bottom: 24px; }
+    .survey-btn { display: block; width: 100%; }
+
+    /* Footer */
+    .site-footer { padding-top: 20px; padding-bottom: 28px; }
+    .footer-links { gap: 14px; }
+  }
+
+  /* Page-load fade */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .welcome-banner { animation: fadeUp 0.5s ease both; }
+  .start-here     { animation: fadeUp 0.5s 0.1s ease both; }
+  .upsell-section { animation: fadeUp 0.5s 0.2s ease both; }
+  .sponsor-banner { animation: fadeUp 0.5s 0.3s ease both; }
+  .survey-section { animation: fadeUp 0.5s 0.35s ease both; }
+</style>
+</head>
+<body>
+<!-- ── MASTHEAD ──────────────────────────── -->
+<nav class="top-nav">
+  <a href="https://thejiffy.xyz/archive" target="_blank" rel="noopener">Archive</a>
+  <a href="https://thejiffy.buzzsprout.com" target="_blank" rel="noopener">Podcast</a>
+  <a href="https://www.thejiffy.xyz/p/the-jiffy-mission-faq" target="_blank" rel="noopener">Ethics & FAQ</a>
+</nav>
+<header class="masthead">
+  <div class="page-wrapper">
+    <div class="masthead-logo">
+      <svg viewBox="0 0 2400 402" xmlns="http://www.w3.org/2000/svg" aria-label="The Jiffy" role="img" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><path d="M266.962,0l-266.962,0l0,94.964l80.354,0l0,303.486l100.941,0l0,-303.486l85.667,0l0,-94.964Z" style="fill-rule:nonzero;"/><path d="M494.743,0l0,150.083l-59.768,0l0,-150.083l-100.941,0l0,398.45l100.941,0l0,-153.403l59.768,0l0,153.403l100.941,0l0,-398.45l-100.941,0Z" style="fill-rule:nonzero;"/><path d="M676.702,398.45l0,-398.45l226.453,0l0,94.964l-125.512,0l0,65.08l68.401,0l0,71.721l-68.401,0l0,71.721l125.512,0l0,94.964l-226.453,0Z" style="fill-rule:nonzero;"/><path d="M1217.266,0l0,277.587c0,16.602 -7.969,27.227 -27.892,27.227c-16.602,0 -25.235,-10.625 -25.235,-27.227l0,-49.142l-85.667,0l0,50.47c0,85.003 49.142,122.856 118.207,122.856c67.072,0 121.527,-35.196 121.527,-117.543l0,-284.228l-100.941,0Z" style="fill-rule:nonzero;"/><rect x="1399.225" y="0" width="100.941" height="398.45" style="fill-rule:nonzero;"/><path d="M1581.184,398.45l0,-398.45l226.453,0l0,94.964l-125.512,0l0,65.08l68.401,0l0,71.721l-68.401,0l0,166.685l-100.941,0Z" style="fill-rule:nonzero;"/><path d="M1863.42,398.45l0,-398.45l226.453,0l0,94.964l-125.512,0l0,65.08l68.401,0l0,71.721l-68.401,0l0,166.685l-100.941,0Z" style="fill-rule:nonzero;"/><path d="M2400,0l-88.323,0l-52.463,123.52l-51.799,-123.52l-105.589,0l96.292,204.538l0,193.913l100.941,0l0,-187.272l100.941,-211.179Z" style="fill-rule:nonzero;"/></svg>
+    </div>
+    <div class="masthead-tagline">A documentary newsletter & podcast about upstate New York</div>
+    <div class="masthead-date"><a href="https://www.thejiffy.xyz" target="_blank" rel="noopener" class="masthead-date-link">thejiffy.xyz</a></div>
+  </div>
+  <div class="masthead-double-rule"></div>
+</header>
+<!-- ── WELCOME BANNER ────────────────────── -->
+<section class="welcome-banner page-wrapper">
+  <span class="welcome-kicker">Thank you for subscribing!</span>
+  <h1 class="welcome-headline">Welcome to the Jiffy.<br>Here's what you just signed up for.</h1>
+  <p class="welcome-body">
+    You've just stepped into my ongoing project where I share stories about life in upstate New York – told through short documentaries, reported essays, photography, audio, and the occasional Kinderhook Blob sighting.<br><br>
+    I'm James. I'm a documentary journalist based in the Hudson Valley, and I'm really glad you're here.
+  </p>
+  <span class="wave-divider" aria-hidden="true">
+    <svg viewBox="0 0 1200 20" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+      <path d="M420,10 C430,3 440,3 450,10 C460,17 470,17 480,10 C490,3 500,3 510,10 C520,17 530,17 540,10 C550,3 560,3 570,10 C580,17 590,17 600,10 C610,3 620,3 630,10 C640,17 650,17 660,10 C670,3 680,3 690,10 C700,17 710,17 720,10 C730,3 740,3 750,10 C760,17 770,17 780,10"
+        fill="none" stroke="#0a0a0a" stroke-width="5" stroke-linecap="butt" stroke-linejoin="butt"/>
+    </svg>
+  </span>
+</section>
+<!-- ── START HERE ────────────────────────── -->
+<section class="start-here page-wrapper">
+  <div class="section-header">
+    <span class="section-title">Start Here</span>
+    <span class="section-rule"></span>
+    <span class="section-title" style="color:#999; font-weight:400">3 issues worth your time</span>
+  </div>
+  <div class="story-list">
+    <a href="https://www.thejiffy.xyz/p/out-in-left-field-in-1864" class="story-item" target="_blank" rel="noopener">
+      <div class="story-number">01</div>
+      <div>
+        <span class="story-kicker">History · Sport</span>
+        <div class="story-title">Out In Left Field In 1864</div>
+        <p class="story-dek">A season-ender double-header vintage base ball game in Kingston.</p>
+      </div>
+    </a>
+    <a href="https://www.thejiffy.xyz/p/the-true-legend-of-ann-lee" class="story-item" target="_blank" rel="noopener">
+      <div class="story-number">02</div>
+      <div>
+        <span class="story-kicker">People · Religion</span>
+        <div class="story-title">The 'True Legend' Of Ann Lee</div>
+        <p class="story-dek">Separating life from myth about the original Shaker Mother.</p>
+      </div>
+    </a>
+    <a href="https://www.thejiffy.xyz/p/shaking-the-hand-of-time" class="story-item" target="_blank" rel="noopener">
+      <div class="story-number">03</div>
+      <div>
+        <span class="story-kicker">Place · Craft</span>
+        <div class="story-title">Shaking The Hand Of Time</div>
+        <p class="story-dek">Chatham's timekeeper takes us up the 1872 clock tower.</p>
+      </div>
+    </a>
+  </div>
+</section>
+<!-- ── PAID UPSELL ────────────────────────── -->
+<section class="upsell-section page-wrapper">
+  <div class="upsell-inner">
+    <span class="upsell-kicker">Upgrade to a Paid Membership</span>
+    <h2 class="upsell-headline">Here's how you can support this work</h2>
+    <p class="upsell-body">
+      The Jiffy is fully independent – no billionaires here. Readers fund this work through paid memberships and make it possible for me to keep sharing stories about our community (instead of chasing algorithms).<br><br>If you'd like to support slow content and get a few perks along the way, here's how:
+    </p>
+    <div class="tiers">
+      <div class="tier-card">
+        <div class="tier-name">Grab 'N Go</div>
+        <div class="tier-price">$5<span style="font-size:14px; color:#888">/mo</span></div>
+        <div class="tier-price-note">or $50/year</div>
+        <ul class="tier-perks">
+          <li>Full archive access</li>
+          <li>Travel guides for jaunting</li>
+          <li>Good karma</li>
+        </ul>
+      </div>
+      <div class="tier-card featured">
+        <span class="tier-badge">Most Popular</span>
+        <div class="tier-name">Deluxe Aisle</div>
+        <div class="tier-price">$8<span style="font-size:14px; color:#888">/mo</span></div>
+        <div class="tier-price-note">or $86/year</div>
+        <ul class="tier-perks">
+          <li>Everything in Grab 'N Go</li>
+          <li>Audio exclusives</li>
+          <li>The Jiffy Book Club</li>
+        </ul>
+      </div>
+      <div class="tier-card">
+        <div class="tier-name">J'Fay Supreme</div>
+        <div class="tier-price">$200<span style="font-size:14px; color:#888">/yr</span></div>
+        <div class="tier-price-note">Annual only</div>
+        <ul class="tier-perks">
+          <li>Everything above</li>
+          <li>Founding supporter status</li>
+          <li>Extremely good karma</li>
+        </ul>
+      </div>
+    </div>
+    <a href="https://thejiffy.xyz/upgrade" class="upsell-cta" target="_blank" rel="noopener">Become a Supporter →</a>
+  </div>
+</section>
+<!-- ── SPONSOR BANNER ──────────────────────── -->
+<div class="sponsor-banner page-wrapper">
+  <div class="sponsor-header">
+    <span class="sponsor-header-text">Presented with</span>
+  </div>
+  <div class="sponsor-banner-inner">
+    <div class="sponsor-label-col">
+      <div class="sponsor-thumb">
+        <img src="#" alt="Sponsor logo" class="sponsor-thumb-img" onerror="this.style.display='none'">
+        <div class="sponsor-thumb-placeholder">YOUR<br>BRAND<br>HERE</div>
+      </div>
+    </div>
+    <div class="sponsor-divider"></div>
+    <div class="sponsor-copy-col">
+      <p class="sponsor-copy">
+        This is where your brand shows up in The Jiffy. Get in front of readers who are curious, engaged, and invested in our communities. If you're a mission-driven business, this is a good fit.
+      </p>
+      <a href="#" class="sponsor-cta-link">Reach out →</a>
+    </div>
+  </div>
+</div>
+<!-- ── SURVEY ─────────────────────────────── -->
+<section class="survey-section page-wrapper">
+  <div class="survey-inner">
+    <div>
+      <div class="survey-headline">Three quick questions.</div>
+      <p class="survey-body">
+        This 90-second survey will help me make The Jiffy a newsletter you'll enjoy reading each week.
+      </p>
+    </div>
+    <a href="https://www.thejiffy.xyz/forms/8b304d59-3260-4cfe-92e7-5451f1c6ada0" class="survey-btn" target="_blank" rel="noopener">Take the Survey →</a>
+  </div>
+</section>
+<!-- ── FOOTER ─────────────────────────────── -->
+<footer class="site-footer page-wrapper">
+  <div class="footer-logo">
+    <svg viewBox="0 0 2400 402" xmlns="http://www.w3.org/2000/svg" aria-label="The Jiffy" role="img" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><path d="M266.962,0l-266.962,0l0,94.964l80.354,0l0,303.486l100.941,0l0,-303.486l85.667,0l0,-94.964Z" style="fill-rule:nonzero;"/><path d="M494.743,0l0,150.083l-59.768,0l0,-150.083l-100.941,0l0,398.45l100.941,0l0,-153.403l59.768,0l0,153.403l100.941,0l0,-398.45l-100.941,0Z" style="fill-rule:nonzero;"/><path d="M676.702,398.45l0,-398.45l226.453,0l0,94.964l-125.512,0l0,65.08l68.401,0l0,71.721l-68.401,0l0,71.721l125.512,0l0,94.964l-226.453,0Z" style="fill-rule:nonzero;"/><path d="M1217.266,0l0,277.587c0,16.602 -7.969,27.227 -27.892,27.227c-16.602,0 -25.235,-10.625 -25.235,-27.227l0,-49.142l-85.667,0l0,50.47c0,85.003 49.142,122.856 118.207,122.856c67.072,0 121.527,-35.196 121.527,-117.543l0,-284.228l-100.941,0Z" style="fill-rule:nonzero;"/><rect x="1399.225" y="0" width="100.941" height="398.45" style="fill-rule:nonzero;"/><path d="M1581.184,398.45l0,-398.45l226.453,0l0,94.964l-125.512,0l0,65.08l68.401,0l0,71.721l-68.401,0l0,166.685l-100.941,0Z" style="fill-rule:nonzero;"/><path d="M1863.42,398.45l0,-398.45l226.453,0l0,94.964l-125.512,0l0,65.08l68.401,0l0,71.721l-68.401,0l0,166.685l-100.941,0Z" style="fill-rule:nonzero;"/><path d="M2400,0l-88.323,0l-52.463,123.52l-51.799,-123.52l-105.589,0l96.292,204.538l0,193.913l100.941,0l0,-187.272l100.941,-211.179Z" style="fill-rule:nonzero;"/></svg>
+  </div>
+  <nav class="footer-links">
+    <a href="https://thejiffy.xyz" target="_blank" rel="noopener">Website</a>
+    <a href="https://thejiffy.xyz/archive" target="_blank" rel="noopener">Archive</a>
+    <a href="https://thejiffy.buzzsprout.com" target="_blank" rel="noopener">Podcast</a>
+    <a href="mailto:hi@thejiffy.xyz">Sponsor</a>
+    <a href="https://www.instagram.com/jamescave" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.thejiffy.xyz/p/the-jiffy-mission-faq" target="_blank" rel="noopener">Ethics & FAQ</a>
+  </nav>
+  <p class="footer-fine">
+    Hudson Valley, New York &nbsp;·&nbsp; Independent since day one<br>
+  </p>
+</footer>
+</body>
+</html>
