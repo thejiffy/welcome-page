@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Jiffy — Pencil Zine</title>
+<meta name="description" content="Hand-drawn stories from upstate New York. Listen to episodes of The Jiffy and subscribe to the newsletter.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Libre+Franklin:wght@400;500;600;700;800&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'HWT Unit Gothic 718';
+    src: url('fonts/HWT-Unit-Gothic-718.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  :root {
+    --cream: #fdfcf8;
+    --black: #0a0a0a;
+    --pencil: #3a3a3a;
+    --blue: #0000ff;
+    --yellow: #ffcf00;
+    --magenta: #ff10f0;
+    --cyan: #00e0ff;
+    --red: #ff0000;
+    --green: #56e403;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--cream);
+    color: var(--black);
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 22px; }
+
+  /* ── ART PLACEHOLDER (swap for Procreate PNGs) ───────────── */
+  .sketch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 2px dashed var(--pencil);
+    border-radius: 3px;
+    background: repeating-linear-gradient(135deg, rgba(10,10,10,0.03) 0 10px, transparent 10px 20px);
+    color: var(--pencil);
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: normal;
+    text-transform: uppercase;
+    padding: 12px;
+  }
+  .sketch small {
+    display: block;
+    margin-top: 6px;
+    font-family: 'Libre Baskerville', serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: normal;
+    text-transform: none;
+    font-size: 11px;
+    opacity: 0.75;
+  }
+
+  /* ── TOP NAV ───────────────────────────────────────────── */
+  .top-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 16px 20px 6px;
+  }
+  .top-nav a {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: normal;
+    text-transform: uppercase;
+    color: var(--black);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  .top-nav a:hover { border-color: var(--blue); color: var(--blue); }
+  .top-nav a.nav-img-link {
+    display: inline-block;
+    width: 94px;
+  }
+  .top-nav a.nav-img-link img {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: none;
+    transition: filter 0.15s;
+  }
+  .top-nav a.nav-img-link:hover img {
+    filter: brightness(0) invert(8%) sepia(97%) saturate(7472%) hue-rotate(246deg) brightness(97%) contrast(144%);
+  }
+
+  /* ── HERO ──────────────────────────────────────────────── */
+  .hero {
+    text-align: center;
+    padding: 30px 22px 40px;
+  }
+  .hero-lettering {
+    width: 100%;
+    max-width: 560px;
+    aspect-ratio: 5 / 2;
+    height: auto;
+    margin: 0 auto;
+  }
+  .hero-byline {
+    position: relative;
+    z-index: 2;
+    width: 179px;
+    max-width: 32%;
+    aspect-ratio: 4 / 1;
+    height: auto;
+    margin: -70px auto 25px;
+    transform: rotate(-5deg);
+  }
+  .sketch img,
+  .hero-lettering img,
+  .hero-byline img,
+  .sketch-title img,
+  .episode-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  .hero-tagline {
+    width: 100%;
+    max-width: 480px;
+    aspect-ratio: 2.5 / 1;
+    height: auto;
+    margin: 0 auto;
+    transform: rotate(-0.6deg);
+  }
+  .hero-tagline img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  .hero-cta {
+    display: inline-block;
+    margin-top: 26px;
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: normal;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--black);
+    background: var(--yellow);
+    border: 2px solid var(--black);
+    padding: 12px 26px;
+    transform: rotate(-1deg);
+    transition: transform 0.15s;
+  }
+  .hero-cta:hover { transform: rotate(0deg) translateY(-2px); }
+
+  .rule {
+    display: block;
+    width: 100%;
+    max-width: 560px;
+    height: auto;
+    margin: 10px auto 0;
+  }
+  /* ── SECTION HEADS ─────────────────────────────────────── */
+  .section-head {
+    text-align: center;
+    margin: 0 auto 30px;
+  }
+  .section-head .kicker {
+    display: block;
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: normal;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 8px;
+  }
+  .section-head .sketch-title {
+    width: 100%;
+    max-width: 340px;
+    aspect-ratio: 6 / 1;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  /* ── EPISODES ──────────────────────────────────────────── */
+  .episodes { padding: 10px 0 10px; }
+  .episode {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 18px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(10,10,10,0.15);
+  }
+  .episode:nth-child(2) .episode-art { transform: rotate(1.5deg); }
+  .episode:nth-child(3) .episode-art { transform: rotate(-1deg); }
+  .episode-art {
+    position: relative;
+    width: 180px;
+    flex-shrink: 0;
+    transform: rotate(-1.5deg);
+  }
+  .episode-art img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  .episode-art .frame {
+    top: -10px;
+    left: -10px;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    pointer-events: none;
+  }
+  .episode-title {
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    margin-bottom: 6px;
+  }
+  .episode-desc {
+    font-size: 14.5px;
+    color: var(--pencil);
+    margin-bottom: 12px;
+  }
+  .player-box {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 6 / 1;
+    margin-top: 4px;
+  }
+  .player-box-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  .player-controls {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 6%;
+  }
+  .player-btn {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  .player-btn img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .player-track {
+    position: relative;
+    flex: 1;
+    height: 24px;
+    cursor: pointer;
+  }
+  .player-track::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--pencil);
+    opacity: 0.45;
+    border-radius: 2px;
+    transform: translateY(-50%);
+  }
+  .playhead {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    width: 28px;
+    height: 28px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  .player-time {
+    flex-shrink: 0;
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--black);
+    white-space: nowrap;
+  }
+
+  /* ── SIGNUP ────────────────────────────────────────────── */
+  .signup {
+    text-align: center;
+    padding: 40px 0 20px;
+  }
+  .signup-sub {
+    max-width: 420px;
+    margin: 0 auto 26px;
+    color: var(--pencil);
+  }
+  .form-slot {
+    max-width: 460px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+  .subscribe-frame {
+    position: relative;
+    width: 100%;
+    max-width: 580px;
+    aspect-ratio: 2285 / 1093;
+    margin: 0 auto 26px;
+  }
+  .subscribe-frame-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    pointer-events: none;
+  }
+  .subscribe-frame .form-slot {
+    position: absolute;
+    top: 48%;
+    bottom: 8%;
+    left: 16%;
+    right: 16%;
+    max-width: none;
+    align-items: center;
+  }
+  .signup-top {
+    text-align: center;
+    padding: 30px 0 10px;
+  }
+
+  /* ── FOOTER ────────────────────────────────────────────── */
+  footer {
+    text-align: center;
+    padding: 40px 20px 60px;
+  }
+  footer nav {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+  footer a {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: normal;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--pencil);
+  }
+  footer .credit {
+    font-size: 12px;
+    color: var(--pencil);
+    opacity: 0.6;
+  }
+
+  @media (max-width: 480px) {
+    .episode { grid-template-columns: 130px 1fr; }
+    .episode-art { width: 130px; }
+  }
+</style>
+</head>
+<body>
+
+  <nav class="top-nav">
+    <a href="https://thejiffy.xyz" target="_blank" rel="noopener" class="nav-img-link" aria-label="Newsletter">
+      <img src="assets/pencil-promo/the-jiffy-top-nav.png" alt="Newsletter">
+    </a>
+    <a href="https://thejiffy.buzzsprout.com" target="_blank" rel="noopener" class="nav-img-link" aria-label="All Episodes">
+      <img src="assets/pencil-promo/all-episodes-top-nav.png" alt="All Episodes">
+    </a>
+    <a href="https://www.instagram.com/jamescave" target="_blank" rel="noopener" class="nav-img-link" aria-label="Instagram">
+      <img src="assets/pencil-promo/instagram-top-nav.png" alt="Instagram">
+    </a>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="hero-lettering">
+        <img src="assets/pencil-promo/hero-lettering.png" alt="The Jiffy">
+      </div>
+      <div class="hero-byline">
+        <img src="assets/pencil-promo/byline-lettering.png" alt="By James Cave">
+      </div>
+      <div class="hero-tagline">
+        <img src="assets/pencil-promo/subtitle-lettering-v3.png" alt="a documentary audio zine about upstate New York, drawn by hand and told out loud">
+      </div>
+      <a href="#signup-top" class="hero-cta">Listen &amp; Subscribe ↓</a>
+    </div>
+  </header>
+
+  <img class="rule" src="assets/pencil-promo/rule-one.png" alt="">
+
+  <main class="wrap">
+
+    <div class="signup-top" id="signup-top">
+      <div class="subscribe-frame">
+        <img class="subscribe-frame-bg" src="assets/pencil-promo/subscribe-here-box-v2.png" alt="">
+        <div class="form-slot">
+          <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="5312a47d-092c-4d65-a823-318b67608ab0"></script>
+        </div>
+      </div>
+    </div>
+
+    <section class="episodes">
+      <div class="section-head" style="margin-top:40px;">
+        <span class="kicker">On the podcast</span>
+        <div class="sketch-title">
+          <img src="assets/pencil-promo/recent-highlights.png" alt="Recent Highlights">
+        </div>
+      </div>
+
+      <article class="episode">
+        <div class="episode-art">
+          <img src="assets/pencil-promo/the-old-ball-game.png" alt="The Old Ball Game">
+          <img class="frame" src="assets/pencil-promo/border-1.png" alt="">
+        </div>
+        <div>
+          <h2 class="episode-title">The Old Ball Game</h2>
+          <p class="episode-desc">A trip to the ball field for the season-ender, double-header vintage base ball game between the Kingston Guards and the Ulster Nine — played by 1864 rules.</p>
+          <div class="player-box">
+            <img class="player-box-bg" src="assets/pencil-promo/player-box-v2.png" alt="">
+            <audio preload="metadata" src="https://podcasts.beehiiv.com/e227afe0-0a4e-4e0b-8c73-99a69aa13cfd/019d53e9-f6f6-761e-abcd-560eae84729d/019e8490-ccfc-73b0-b691-77d4780d622d/019e8490-cdf1-7281-a06e-f431863a0375.mp3"></audio>
+            <div class="player-controls">
+              <button class="player-btn" type="button" aria-label="Play">
+                <img src="assets/pencil-promo/play-icon.png" alt="">
+              </button>
+              <div class="player-track">
+                <img class="playhead" src="assets/pencil-promo/playhead.png" alt="">
+              </div>
+              <span class="player-time">0:00 / 0:00</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="episode">
+        <div class="episode-art">
+          <img src="assets/pencil-promo/hudson-valley-picnic.png" alt="The World's Most Ultimate Hudson Valley Picnic Of All Time">
+          <img class="frame" src="assets/pencil-promo/border-2.png" alt="">
+        </div>
+        <div>
+          <h2 class="episode-title">An Ultimate Picnic</h2>
+          <p class="episode-desc">A listener asked how to build the ultimate Hudson Valley picnic — so we go looking, through picnic history, hampers, wine pairings, and a short story for the blanket.</p>
+          <div class="player-box">
+            <img class="player-box-bg" src="assets/pencil-promo/player-box-v2.png" alt="">
+            <audio preload="metadata" src="https://podcasts.beehiiv.com/e227afe0-0a4e-4e0b-8c73-99a69aa13cfd/019d53e9-f6f6-761e-abcd-560eae84729d/019d53ec-c147-7333-bb3f-a6c7ec2ea7e4/019d53ec-c342-7ba9-abd6-959ae7239636.mp3"></audio>
+            <div class="player-controls">
+              <button class="player-btn" type="button" aria-label="Play">
+                <img src="assets/pencil-promo/play-icon.png" alt="">
+              </button>
+              <div class="player-track">
+                <img class="playhead" src="assets/pencil-promo/playhead.png" alt="">
+              </div>
+              <span class="player-time">0:00 / 0:00</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="episode">
+        <div class="episode-art">
+          <img src="assets/pencil-promo/frederic-church.png" alt="&quot;Your Friend, Frederic E. Church,&quot; According to My Friend Diane Shewchuk">
+          <img class="frame" src="assets/pencil-promo/border-3.png" alt="">
+        </div>
+        <div>
+          <h2 class="episode-title">Best Of Friends</h2>
+          <p class="episode-desc">Kicking off the Frederic Church 200 series at Olana, then into the Albany Institute's archive of 72 letters between Church and sculptor Erastus Dow Palmer.</p>
+          <div class="player-box">
+            <img class="player-box-bg" src="assets/pencil-promo/player-box-v2.png" alt="">
+            <audio preload="metadata" src="https://podcasts.beehiiv.com/e227afe0-0a4e-4e0b-8c73-99a69aa13cfd/019d53e9-f6f6-761e-abcd-560eae84729d/019dc61c-7030-77a4-8996-ee290925126c/019dc61c-710b-7969-93b0-4eccacba6928.mp3"></audio>
+            <div class="player-controls">
+              <button class="player-btn" type="button" aria-label="Play">
+                <img src="assets/pencil-promo/play-icon.png" alt="">
+              </button>
+              <div class="player-track">
+                <img class="playhead" src="assets/pencil-promo/playhead.png" alt="">
+              </div>
+              <span class="player-time">0:00 / 0:00</span>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="signup">
+      <div class="subscribe-frame">
+        <img class="subscribe-frame-bg" src="assets/pencil-promo/subscribe-here-box-v2.png" alt="">
+        <div class="form-slot">
+          <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="5312a47d-092c-4d65-a823-318b67608ab0"></script>
+        </div>
+      </div>
+
+      <p class="signup-sub">Photos, behind-the-scenes extras, and a monthly list of arts &amp; culture happenings across upstate New York — straight to your inbox.</p>
+
+      <img class="rule" src="assets/pencil-promo/rule-one.png" alt="">
+    </section>
+
+  </main>
+
+  <footer>
+    <nav>
+      <a href="https://thejiffy.xyz" target="_blank" rel="noopener">Website</a>
+      <a href="https://thejiffy.xyz/archive" target="_blank" rel="noopener">Archive</a>
+      <a href="https://thejiffy.buzzsprout.com" target="_blank" rel="noopener">Podcast</a>
+      <a href="https://www.instagram.com/jamescave" target="_blank" rel="noopener">Instagram</a>
+    </nav>
+    <p class="credit">The Jiffy – sketches of upstate New York.</p>
+  </footer>
+
+  <script>
+    function formatTime(s) {
+      if (!isFinite(s) || s < 0) s = 0;
+      const m = Math.floor(s / 60);
+      const sec = Math.floor(s % 60);
+      return m + ':' + String(sec).padStart(2, '0');
+    }
+
+    document.querySelectorAll('.player-box').forEach((box) => {
+      const audio = box.querySelector('audio');
+      const btn = box.querySelector('.player-btn');
+      const btnImg = btn.querySelector('img');
+      const track = box.querySelector('.player-track');
+      const playhead = box.querySelector('.playhead');
+      const timeEl = box.querySelector('.player-time');
+
+      function setIcon(playing) {
+        btnImg.src = playing
+          ? 'assets/pencil-promo/pause-icon.png'
+          : 'assets/pencil-promo/play-icon.png';
+        btn.setAttribute('aria-label', playing ? 'Pause' : 'Play');
+      }
+
+      function update() {
+        const dur = audio.duration || 0;
+        timeEl.textContent = formatTime(audio.currentTime) + ' / ' + (isFinite(dur) ? formatTime(dur) : '0:00');
+        const pct = dur ? (audio.currentTime / dur) * 100 : 0;
+        playhead.style.left = pct + '%';
+      }
+
+      audio.addEventListener('loadedmetadata', update);
+      audio.addEventListener('timeupdate', update);
+      audio.addEventListener('play', () => setIcon(true));
+      audio.addEventListener('pause', () => setIcon(false));
+      audio.addEventListener('ended', () => setIcon(false));
+
+      btn.addEventListener('click', () => {
+        if (audio.paused) {
+          document.querySelectorAll('.player-box audio').forEach((a) => {
+            if (a !== audio) a.pause();
+          });
+          audio.play();
+        } else {
+          audio.pause();
+        }
+      });
+
+      track.addEventListener('click', (e) => {
+        const rect = track.getBoundingClientRect();
+        const pct = Math.min(Math.max((e.clientX - rect.left) / rect.width, 0), 1);
+        if (isFinite(audio.duration)) {
+          audio.currentTime = pct * audio.duration;
+          update();
+        }
+      });
+
+      update();
+    });
+  </script>
+
+  <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
+</body>
+</html>
